@@ -63,9 +63,9 @@ Id,Name,Job,Status
 │       │Frieda│student   │Single   │
 │       │Jan   │CEO       │Married  │
 └───────┴──────┴──────────┴─────────┘
-   $Ivt=. (<1e6 + 21?100000), ifa 21 5 ?@$ 0   NB. create 6 column numeric Inverted table
+   $Ivt=. (<1e6 + ?~1e5), ifa 1e5 5 ?@$ 0   NB. create 6 column numeric Inverted table
 6
-   NB. `tshow` is a verb for formatting numeric inverted tables to display a sample
+   NB. `tshow` is a verb for formatting inverted tables to display a sample
    tshow Ivt
 ┌───────┬─────────┬────────┬─────────┬─────────┬────────┐
 │1075046│ 0.577324│0.326908│0.513408 │0.0404037│0.796914│
