@@ -10,7 +10,11 @@ dfftbl=: {. ,: ifa@}.
 NB.*dfp a Apply verb u on DataFrame y
 NB. u is a verb designed to work on an inverted table
 NB. dfp will remove the header apply u and then reapply the header row
-dfp=: dfpipe=: {{ {.@] ,: [ u {:@] }}
+dfp=: dfpipe=: {{
+  ({.y) ,: u {:y
+:
+  ({.y) ,: x u {:y
+}}
 
 dfsort=: tsort dfp  NB. sort DataFrame
 
