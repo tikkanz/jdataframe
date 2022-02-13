@@ -30,6 +30,8 @@ Id,Name,Job,Status
 ├──┼──────┼──────────┼─────────┤
 │1 │Alex  │Waiter    │Separated│
 └──┴──────┴──────────┴─────────┘
+
+   NB. A DataFrame is a list of boxed column labels, laminated to an inverted table.
    ]Bdf=: dfftbl B
 ┌──┬──────┬──────────┬─────────┐
 │Id│Name  │Job       │Status   │
@@ -39,6 +41,8 @@ Id,Name,Job,Status
 │5 │Frieda│student   │Single   │
 │1 │Alex  │Waiter    │Separated│
 └──┴──────┴──────────┴─────────┘
+
+   NB. `dfpipe` is an adverb that applies inverted table verbs to a DataFrame.
    tsort dfpipe Bdf
 ┌──┬──────┬──────────┬─────────┐
 │Id│Name  │Job       │Status   │
@@ -48,7 +52,9 @@ Id,Name,Job,Status
 │5 │Frieda│student   │Single   │
 │6 │Jan   │CEO       │Married  │
 └──┴──────┴──────────┴─────────┘
-   tmakenumcol dfpipe tsort dfpipe Bdf
+
+   NB. `dfp` is an alias for `dfpipe`
+   tmakenumcol dfp tsort dfp Bdf
 ┌───────┬──────┬──────────┬─────────┐
 │Id     │Name  │Job       │Status   │
 ├───────┼──────┼──────────┼─────────┤
@@ -57,8 +63,9 @@ Id,Name,Job,Status
 │       │Frieda│student   │Single   │
 │       │Jan   │CEO       │Married  │
 └───────┴──────┴──────────┴─────────┘
-   $Ivt=. (<1e6 + 21?100000), ifa 21 5 ?@$ 0   NB. create numeric Inverted table
+   $Ivt=. (<1e6 + 21?100000), ifa 21 5 ?@$ 0   NB. create 6 column numeric Inverted table
 6
+   NB. `tshow` is a verb for formatting numeric inverted tables to display a sample
    tshow Ivt
 ┌───────┬─────────┬────────┬─────────┬─────────┬────────┐
 │1075046│ 0.577324│0.326908│0.513408 │0.0404037│0.796914│
@@ -73,6 +80,8 @@ Id,Name,Job,Status
 │1098643│0.272687 │0.183623│  0.95511│0.0746902│0.996458│
 │1020349│ 0.67446 │ 0.64529│ 0.600252│ 0.180631│0.922642│
 └───────┴─────────┴────────┴─────────┴─────────┴────────┘
+
+   NB. `noIvtHdr` adds default header names to an inverted table, creating a DataFrame
    tshow dfp noIvtHdr Ivt
 ┌────────┬─────────┬────────┬─────────┬─────────┬────────┐
 │column_1│column_2 │column_3│column_4 │column_5 │column_6│
