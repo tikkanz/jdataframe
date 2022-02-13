@@ -9,5 +9,5 @@ To install addon, from a J session:
 ## Usage
 ```j
    load 'tables/dataframe'
-   coinsert 'pdframe'
+   coinsert 'pdataframe'
 ```
