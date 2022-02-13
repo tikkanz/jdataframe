@@ -1,3 +1,4 @@
+NB.===========================================================
 Note 'J DataFrames'
 Utilities for working with J DataFrames
 J DataFrames consist of an inverted tables laminated with boxed list of column names
@@ -20,7 +21,7 @@ noTblHdr=: ([: 'column_'&,&.> <@":@#\) , ]
 
 
 Note 'Example use'
-load 'tables/join/test0'  NB. expect value error (just defining tables)
+load 'tables/dataframe/test/test'  NB. expect value error (just defining tables)
 ]Bdf=: dfftbl B
 tsort dfp Bdf
 dfsort Bdf

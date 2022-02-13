@@ -13,6 +13,8 @@ FOLDER=: 'tables/dataframe'
 FILES=: 0 : 0
 LICENSE
 dataframe.ijs
+README.md
+test/test.ijs
 )
 
 DEPENDS=: 0 : 0

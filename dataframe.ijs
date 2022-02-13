@@ -1,3 +1,7 @@
+NB.=============================
+NB. Initialsie tables/dataframe
+cocurrent 'pdataframe'
+
 Note 'Extending inverted table'
 This script extends the utilities in general/misc/inverted for working with Inverted Tables
 Potentially they could combine to become a new addon tables/inverted ?
@@ -34,7 +38,7 @@ tshow=: verb define
 )
 
 Note 'Example Use'
-load 'tables/join/test0'  NB. expect value error (just defining tables)
+load '~Dev/jdataframe/test/test.ijs'
 ] Bivt=. ifa }. B
 tmakenumcol Bivt
 tshow tmakenumcol Bivt
@@ -42,6 +46,8 @@ tshow tmakenumcol Bivt
 tshow Ivt
 tshow 3&}.&.> Ivt
 )
+
+NB.===========================================================
 Note 'J DataFrames'
 Utilities for working with J DataFrames
 J DataFrames consist of an inverted tables laminated with boxed list of column names
@@ -64,7 +70,7 @@ noTblHdr=: ([: 'column_'&,&.> <@":@#\) , ]
 
 
 Note 'Example use'
-load 'tables/join/test0'  NB. expect value error (just defining tables)
+load 'tables/dataframe/test/test'  NB. expect value error (just defining tables)
 ]Bdf=: dfftbl B
 tsort dfp Bdf
 dfsort Bdf

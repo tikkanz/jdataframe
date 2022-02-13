@@ -8,4 +8,4 @@ load ProjPath,'/build.ijs'   NB. rebuild
 load ProjPath,'/dataframe.ijs'   NB. reload
 NB. run tests here
 echo 'Running tests...'
-NB. load ProjPath,'/test/test1.ijs'
+load ProjPath,'/test/test.ijs'

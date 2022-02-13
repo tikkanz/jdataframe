@@ -34,7 +34,7 @@ tshow=: verb define
 )
 
 Note 'Example Use'
-load 'tables/join/test0'  NB. expect value error (just defining tables)
+load '~Dev/jdataframe/test/test.ijs'
 ] Bivt=. ifa }. B
 tmakenumcol Bivt
 tshow tmakenumcol Bivt
@@ -42,3 +42,4 @@ tshow tmakenumcol Bivt
 tshow Ivt
 tshow 3&}.&.> Ivt
 )
+
