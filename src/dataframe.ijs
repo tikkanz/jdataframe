@@ -21,7 +21,7 @@ dfsort=: tsort dfp  NB. sort DataFrame
 NB. Add row of default column labels if inverted table has no header row
 noIvtHdr=: ([: 'column_'&,&.> <@":@#\) ,: ]
 NB. Add row of default column labels if table has no header row
-noTblHdr=: ([: 'column_'&,&.> <@":@#\) , ]
+noTblHdr=: ([: 'column_'&,&.> <@":@#\)@|: , ]
 
 
 Note 'Example use'
