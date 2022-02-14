@@ -4,7 +4,7 @@ DESCRIPTION=: 0 : 0
 Utilities for working with a DataFrame-like structure in J
 )
 
-VERSION=: '0.0.1'
+VERSION=: '0.0.2'
 
 RELEASE=:'j903'
 
