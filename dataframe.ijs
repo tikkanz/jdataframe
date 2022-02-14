@@ -53,6 +53,9 @@ Utilities for working with J DataFrames
 J DataFrames consist of an inverted tables laminated with boxed list of column names
 )
 
+NB.*isdataframe v Checks if noun is a dataframe
+isdataframe=: isinverted@{: *. (2 = #)
+
 NB.*dfftbl v Make a DataFrame from Table with a header row y
 dfftbl=: {. ,: ifa@}.
 
@@ -60,9 +63,19 @@ NB.*dfp a Apply verb u on DataFrame y
 NB. u is a verb designed to work on an inverted table
 NB. dfp will remove the header apply u and then reapply the header row
 dfp=: dfpipe=: {{
-  ({.y) ,: u {:y
+  res=. u {:y
+  if. isinverted res do.
+    ({.y) ,: res
+  end.
 :
-  ({.y) ,: x u {:y
+  xa=. x
+  if. isdataframe x do.
+    xa=. {:x
+  end.
+  res=. xa u {:y
+  if. isinverted res do.
+    ({.y) ,: res
+  end.
 }}
 
 dfsort=: tsort dfp  NB. sort DataFrame
@@ -70,7 +83,7 @@ dfsort=: tsort dfp  NB. sort DataFrame
 NB. Add row of default column labels if inverted table has no header row
 noIvtHdr=: ([: 'column_'&,&.> <@":@#\) ,: ]
 NB. Add row of default column labels if table has no header row
-noTblHdr=: ([: 'column_'&,&.> <@":@#\) , ]
+noTblHdr=: ([: 'column_'&,&.> <@":@#\)@|: , ]
 
 
 Note 'Example use'
