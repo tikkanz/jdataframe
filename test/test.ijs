@@ -17,6 +17,9 @@ echo tmakenumcol dfp tsort dfp Bdf
 echo tshow Ivt
 echo tshow dfp noIvtHdr Ivt
 echo tshow dfp noIvtHdr 3&}.&.> Ivt
+echo dfshow noIvtHdr 3&}.&.> Ivt
+echo dfshow 1 3 dfselect noIvtHdr Ivt
+echo dfshow ('column_2';'column_4') dfselect noIvtHdr Ivt
 
 NB. Tests from Inverted Table Essay
 x0=. ];._1 ' Smith Jones Chan Wilson Saxon Angelo Smith Wilson'
