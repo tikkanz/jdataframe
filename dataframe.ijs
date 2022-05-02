@@ -65,7 +65,7 @@ NB. dfp will remove the column header, apply u y (or x u y)
 NB. and then reapply the header row, if appropriate
 dfp=: dfpipe=: {{
   res=. u {:y
-  if. isinverted res do.
+  if. (isinverted res) +. tshow f.`'' -: u f.`'' do.
     ({.y) ,: res
   end.
 :
