@@ -30,7 +30,20 @@ dfp=: dfpipe=: {{
   end.
 }}
 
+dfshow=: tshow dfp  NB. show DataFrame
+
 dfsort=: tsort dfp  NB. sort DataFrame
+
+NB. select column(s) of a dataframe
+dfselect=: {{
+  if. (isinteger *. -.@isboxed) x do.
+    colidx=. x    NB. left arg is column indexes
+  else.
+    colidx=. (boxopen x) (i.~ {.) y
+  end.
+  colidx {"1 y
+}}
+
 
 NB. Add row of default column labels if inverted table has no header row
 noIvtHdr=: ([: 'column_'&,&.> <@":@#\) ,: ]

@@ -59,9 +59,10 @@ isdataframe=: isinverted@{: *. (2 = #)
 NB.*dfftbl v Make a DataFrame from Table with a header row y
 dfftbl=: {. ,: ifa@}.
 
-NB.*dfp a Apply verb u on DataFrame y
+NB.*dfp a Apply inverted table verb u on DataFrame y
 NB. u is a verb designed to work on an inverted table
-NB. dfp will remove the header apply u and then reapply the header row
+NB. dfp will remove the column header, apply u y (or x u y)
+NB. and then reapply the header row, if appropriate
 dfp=: dfpipe=: {{
   res=. u {:y
   if. isinverted res do.
@@ -78,7 +79,20 @@ dfp=: dfpipe=: {{
   end.
 }}
 
+dfshow=: tshow dfp  NB. show DataFrame
+
 dfsort=: tsort dfp  NB. sort DataFrame
+
+NB. select column(s) of a dataframe
+dfselect=: {{
+  if. (isinteger *. -.@isboxed) x do.
+    colidx=. x    NB. left arg is column indexes
+  else.
+    colidx=. (boxopen x) (i.~ {.) y
+  end.
+  colidx {"1 y
+}}
+
 
 NB. Add row of default column labels if inverted table has no header row
 noIvtHdr=: ([: 'column_'&,&.> <@":@#\) ,: ]
