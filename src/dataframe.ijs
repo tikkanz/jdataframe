@@ -44,6 +44,17 @@ dfselect=: {{
   colidx {"1 y
 }}
 
+NB. drop column(s) from a dataframe
+dfdrop=: {{
+  if. (isinteger *. -.@isboxed) x do.
+    colidx=. x    NB. left arg is column indexes
+  else.
+    colidx=. (boxopen x) (i.~ {.) y
+  end.
+  (<<<colidx) {"1 y
+}}
+
+
 
 NB. Add row of default column labels if inverted table has no header row
 noIvtHdr=: ([: 'column_'&,&.> <@":@#\) ,: ]

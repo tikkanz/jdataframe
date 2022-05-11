@@ -20,6 +20,8 @@ echo tshow dfp noIvtHdr 3&}.&.> Ivt
 echo dfshow noIvtHdr 3&}.&.> Ivt
 echo dfshow 1 3 dfselect noIvtHdr Ivt
 echo dfshow ('column_2';'column_4') dfselect noIvtHdr Ivt
+echo dfshow ('column_2';'column_4') dfdrop noIvtHdr Ivt
+echo dfshow 'column_2' dfdrop noIvtHdr Ivt
 
 NB. Tests from Inverted Table Essay
 x0=. ];._1 ' Smith Jones Chan Wilson Saxon Angelo Smith Wilson'
