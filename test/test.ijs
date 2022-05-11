@@ -58,3 +58,6 @@ echo tshow dfp (<tgrade dfp Xdf) {&.> dfp Xdf  NB. Grade
 echo tshow dfp (<tgradedown dfp Xdf) {&.> dfp Xdf  NB. Gradedown
 echo tshow dfp tsort dfp Xdf  NB. Sort
 echo tselfie dfp Xdf NB. Selfie
+echo df_toarray (;:'sex age score') dfselect Xdf
+echo dfshow df_fromarray df_toarray (;:'sex age score') dfselect Xdf
+echo dfshow (;:'sex age score') ([ df_fromarray df_toarray@dfselect) Xdf

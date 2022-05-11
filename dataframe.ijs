@@ -83,7 +83,7 @@ dfshow=: tshow dfp  NB. show DataFrame
 
 dfsort=: tsort dfp  NB. sort DataFrame
 
-NB. select column(s) of a dataframe
+NB. Select column(s) of a dataframe
 dfselect=: {{
   if. (isinteger *. -.@isboxed) x do.
     colidx=. x    NB. left arg is column indexes
@@ -93,7 +93,7 @@ dfselect=: {{
   colidx {"1 y
 }}
 
-NB. drop column(s) from a dataframe
+NB. Drop column(s) from a dataframe
 dfdrop=: {{
   if. (isinteger *. -.@isboxed) x do.
     colidx=. x    NB. left arg is column indexes
@@ -103,11 +103,15 @@ dfdrop=: {{
   (<<<colidx) {"1 y
 }}
 
+NB.*df_toarray v Catenate columns of dataframe as a simple table
+df_toarray=: >@(,.&.>/)@{:
 
+NB.*df_fromarray v Convert columns of a simple table to columns of a dataframe
+df_fromarray=: ([: noIvtHdr <"1@|:) : ([ ,: <"1@|:@])
 
 NB. Add row of default column labels if inverted table has no header row
 noIvtHdr=: ([: 'column_'&,&.> <@":@#\) ,: ]
-NB. Add row of default column labels if table has no header row
+NB. Add row of default column labels if boxed table has no header row
 noTblHdr=: ([: 'column_'&,&.> <@":@#\)@|: , ]
 
 
