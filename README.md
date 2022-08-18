@@ -63,6 +63,16 @@ Id,Name,Job,Status
 │       │Frieda│student   │Single   │
 │       │Jan   │CEO       │Married  │
 └───────┴──────┴──────────┴─────────┘
+   0 2 3 tfrom dfp ('Id';'Job') dfselect tmakenumcol dfp tsort dfp Bdf
+┌─────┬──────────┐
+│Id   │Job       │
+├─────┼──────────┤
+│1 5 6│Waiter    │
+│     │student   │
+│     │CEO       │
+└─────┴──────────┘
+
+NB. Working with bigger tables
    $Ivt=. (<1e6 + ?~1e5), ifa 1e5 5 ?@$ 0   NB. create 6 column numeric Inverted table
 6
    NB. `tshow` is a verb for formatting inverted tables to display a sample
