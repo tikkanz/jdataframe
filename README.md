@@ -1,7 +1,10 @@
 # DataFrame addon for J
 Experimenting with a DataFrame-like structure in J
 
-Reuses verbs from 'general/misc/inverted' addon via the `dfpipe` adverb.
+This implementation of a J Dataframe uses an [Inverted Table](https://code.jsoftware.com/wiki/Essays/Inverted_Table) structure to store the data and adds a header row for naming fields/columns. The result is a 2-row by *n*-column table of boxes where *n* is the number of fields/columns in the Dataframe.
+
+The addon allows verbs from the 'general/misc/inverted' script (designed for Inverted tables), to work with a J Dataframe structure via the `dfpipe` adverb.
+
 ## Install
 To install addon, from a J session:
 ```j
