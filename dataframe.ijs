@@ -38,7 +38,7 @@ tshow=: verb define
 )
 
 Note 'Example Use'
-load '~Dev/jdataframe/test/test.ijs'
+load '~addons/tables/dataframe/test/test.ijs'
 ] Bivt=. ifa }. B
 tmakenumcol Bivt
 tshow tmakenumcol Bivt
