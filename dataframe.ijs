@@ -57,7 +57,10 @@ NB.*isdataframe v Checks if noun is a dataframe
 isdataframe=: isinverted@{: *. (2 = #)
 
 NB.*dfftbl v Make a DataFrame from Table with a header row y
-dfftbl=: {. ,: ifa@}.
+dfftbl=: ({. ,: ifa@}.) :. tblfdf
+
+NB.*tblfdf v Make a Table with a header row from a DataFrame y
+tblfdf=: ({. , afi@{:) :. dfftbl
 
 NB.*dfp a Apply inverted table verb u on DataFrame y
 NB. u is a verb designed to work on an inverted table
