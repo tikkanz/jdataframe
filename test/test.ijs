@@ -8,20 +8,23 @@ Id,Name,Job,Status
 1,Alex,Waiter,Separated
 )
 
-Bdf=: dfftbl B
+Bdf=: 1 makeDataFrame B
+assert Bdf -: ({. makeDataFrame }.) B
 Ivt=. (<1e6 + ?~1e5), ifa 1e5 5 ?@$ 0   NB. create numeric Inverted table
 
 echo tsort dfp Bdf
-echo dfsort Bdf
+echo dfSort Bdf
 echo tmakenumcol dfp tsort dfp Bdf
+echo ('9';'Brian';'Scientist';'Divorced') tappend~ dfp Bdf
+echo (('9';'Mary';'Manager';'Divorced') ,~ ])&.dftoTable Bdf
 echo tshow Ivt
-echo tshow dfp noIvtHdr Ivt
-echo tshow dfp noIvtHdr 3&}.&.> Ivt
-echo dfshow noIvtHdr 3&}.&.> Ivt
-echo dfshow 1 3 dfselect noIvtHdr Ivt
-echo dfshow ('column_2';'column_4') dfselect noIvtHdr Ivt
-echo dfshow ('column_2';'column_4') dfdrop noIvtHdr Ivt
-echo dfshow 'column_2' dfdrop noIvtHdr Ivt
+echo tshow dfp makeDataFrame Ivt
+echo tshow dfp makeDataFrame 3&}.&.> Ivt
+echo dfShow makeDataFrame 3&}.&.> Ivt
+echo dfShow 1 3 dfSelect makeDataFrame Ivt
+echo dfShow ('column_2';'column_4') dfSelect makeDataFrame Ivt
+echo dfShow ('column_2';'column_4') dfDrop makeDataFrame Ivt
+echo dfShow 'column_2' dfDrop makeDataFrame Ivt
 
 NB. Tests from Inverted Table Essay
 x0=. ];._1 ' Smith Jones Chan Wilson Saxon Angelo Smith Wilson'
@@ -45,7 +48,7 @@ Wilson,John,1,23,1.25
 Xivt -: tmakenumcol ifa X  NB. reconstruct X (from Essay) using csv.
 
 cnames=. ;:'lastname firstname sex age score'
-Xdf=: tmakenumcol dfp dfftbl cnames , X
+Xdf=: tmakenumcol dfp cnames makeDataFrame X
 
 echo ttally dfp Xdf
 echo tshow dfp Ydf=: 3 1 1 2 tfrom dfp Xdf NB. From
@@ -58,6 +61,7 @@ echo tshow dfp (<tgrade dfp Xdf) {&.> dfp Xdf  NB. Grade
 echo tshow dfp (<tgradedown dfp Xdf) {&.> dfp Xdf  NB. Gradedown
 echo tshow dfp tsort dfp Xdf  NB. Sort
 echo tselfie dfp Xdf NB. Selfie
-echo df_toarray (;:'sex age score') dfselect Xdf
-echo dfshow df_fromarray df_toarray (;:'sex age score') dfselect Xdf
-echo dfshow (;:'sex age score') ([ df_fromarray df_toarray@dfselect) Xdf
+echo dfToArray (;:'sex age score') dfSelect Xdf
+echo dfShow makeDataFrame dfToArray (;:'sex age score') dfSelect Xdf
+echo dfShow (;:'sex age score') ([ dfFromArray dfToArray@dfSelect) Xdf
+echo dfShow (;:'sex age score') ([ makeDataFrame dfToArray@dfSelect) Xdf

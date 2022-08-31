@@ -3,7 +3,7 @@ Experimenting with a DataFrame-like structure in J
 
 This implementation of a J Dataframe uses an [Inverted Table](https://code.jsoftware.com/wiki/Essays/Inverted_Table) structure to store the data and adds a header row for naming fields/columns. The result is a 2-row by *n*-column table of boxes where *n* is the number of fields/columns in the Dataframe.
 
-The addon allows verbs from the 'general/misc/inverted' script (designed for Inverted tables), to work with a J Dataframe structure via the `dfpipe` adverb.
+The addon allows verbs from the 'general/misc/inverted' script (designed for Inverted tables), to work with a J Dataframe structure via the `dfPipe` adverb.
 
 ## Install
 To install addon, from a J session:
@@ -35,7 +35,7 @@ Id,Name,Job,Status
 └──┴──────┴──────────┴─────────┘
 
    NB. A DataFrame is a list of boxed column labels, laminated to an inverted table.
-   ]Bdf=: dfftbl B
+   ]Bdf=: 1 makeDataFrame B
 ┌──┬──────┬──────────┬─────────┐
 │Id│Name  │Job       │Status   │
 ├──┼──────┼──────────┼─────────┤
@@ -45,8 +45,8 @@ Id,Name,Job,Status
 │1 │Alex  │Waiter    │Separated│
 └──┴──────┴──────────┴─────────┘
 
-   NB. `dfpipe` is an adverb that applies inverted table verbs to a DataFrame.
-   tsort dfpipe Bdf
+   NB. `dfPipe` is an adverb that applies inverted table verbs to a DataFrame.
+   tsort dfPipe Bdf
 ┌──┬──────┬──────────┬─────────┐
 │Id│Name  │Job       │Status   │
 ├──┼──────┼──────────┼─────────┤
@@ -56,7 +56,7 @@ Id,Name,Job,Status
 │6 │Jan   │CEO       │Married  │
 └──┴──────┴──────────┴─────────┘
 
-   NB. `dfp` is an alias for `dfpipe`
+   NB. `dfp` is an alias for `dfPipe`
    tmakenumcol dfp tsort dfp Bdf
 ┌───────┬──────┬──────────┬─────────┐
 │Id     │Name  │Job       │Status   │
@@ -66,7 +66,7 @@ Id,Name,Job,Status
 │       │Frieda│student   │Single   │
 │       │Jan   │CEO       │Married  │
 └───────┴──────┴──────────┴─────────┘
-   0 2 3 tfrom dfp ('Id';'Job') dfselect tmakenumcol dfp tsort dfp Bdf
+   0 2 3 tfrom dfp ('Id';'Job') dfSelect tmakenumcol dfp tsort dfp Bdf
 ┌─────┬──────────┐
 │Id   │Job       │
 ├─────┼──────────┤
@@ -81,6 +81,8 @@ NB. Working with bigger tables
    NB. `tshow` is a verb for formatting inverted tables to display a sample
    tshow Ivt
 ┌───────┬─────────┬────────┬─────────┬─────────┬────────┐
+│integer│floating │floating │floating │floating│floating│
+│---    │---      │---      │---      │---     │---     │
 │1075046│ 0.577324│0.326908│0.513408 │0.0404037│0.796914│
 │1049892│0.0993946│0.998484│ 0.64112 │ 0.534353│0.853303│
 │1071469│ 0.152675│ 0.46638│0.961524 │  0.69655│0.887527│
@@ -94,11 +96,13 @@ NB. Working with bigger tables
 │1020349│ 0.67446 │ 0.64529│ 0.600252│ 0.180631│0.922642│
 └───────┴─────────┴────────┴─────────┴─────────┴────────┘
 
-   NB. `noIvtHdr` adds default header names to an inverted table, creating a DataFrame
-   tshow dfp noIvtHdr Ivt
+   NB. `makeDataFrame` adds default header names to an inverted table, creating a DataFrame
+   tshow dfp makeDataFrame Ivt
 ┌────────┬─────────┬────────┬─────────┬─────────┬────────┐
 │column_1│column_2 │column_3│column_4 │column_5 │column_6│
 ├────────┼─────────┼────────┼─────────┼─────────┼────────┤
+│integer │floating │floating│floating │floating │floating│
+│---     │---      │---     │---      │---      │---     │
 │1075046 │ 0.577324│0.326908│0.513408 │0.0404037│0.796914│
 │1049892 │0.0993946│0.998484│ 0.64112 │ 0.534353│0.853303│
 │1071469 │ 0.152675│ 0.46638│0.961524 │  0.69655│0.887527│

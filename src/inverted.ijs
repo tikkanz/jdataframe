@@ -6,13 +6,13 @@ require 'general/misc/inverted'
 require 'general/misc/validate'
 
 NB. see also tassert
-isinverted=: (1 = [: #@~. #&>) *. (isscalar +. isvector) *. isboxed
+isInverted=: (1 = [: #@~. #&>) *. (isscalar +. isvector) *. isboxed
 
 NB.*tmakenumbcol v Convert columns of inverted table to numeric
 tmakenumcol=: verb define
   _9999 tmakenumcol y
 :
-NB.   assert. isinverted y
+  NB.   assert. isinverted y
   tassert y
   dat=. x&". &.> y
   notnum=. x&e.@> dat               NB. mask of boxes containing an error code
@@ -23,18 +23,18 @@ NB.   assert. isinverted y
   dat
 )
 
-NB.*tshow v Pretty display of long inverted table
+NB.*tshow v Pretty-print a long inverted table
 tshow=: verb define
   tassert y
   if. 20 < ttally y do.
-    (([: ":@,. 5&{.) , '...' , ([: ":@,. _5&{.))&.> y
+    ((datatype , '---' , [: ":@,. 5&{.) , '...' , ([: ":@,. _5&{.))&.> y
   else.
-    ":@,.&.> y
+    (datatype , '---' , ":@,.)&.> y
   end.
 )
 
 Note 'Example Use'
-load '~Dev/jdataframe/test/test.ijs'
+load 'tables/dataframe/test/test'  NB. expect value error (just defining tables)
 ] Bivt=. ifa }. B
 tmakenumcol Bivt
 tshow tmakenumcol Bivt
@@ -42,4 +42,3 @@ tshow tmakenumcol Bivt
 tshow Ivt
 tshow 3&}.&.> Ivt
 )
-
